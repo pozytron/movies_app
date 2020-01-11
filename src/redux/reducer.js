@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
-import {QUOTE_FETCHING, QUOTE_FETCHED, QUOTE_ERROR, ADD_FAV} from "./actions";
+import {MOVIES_FETCHING, MOVIES_FETCHED, MOVIES_ERROR, ADD_FAV} from "./actions";
 
 const initialState = {
   loading: false,
   error: "",
-  quote: null
+  movies: null
 };
 
-const quote = (state = initialState, { type, payload }) => {
-  if (type === QUOTE_FETCHING) {
+const movies = (state = initialState, { type, payload }) => {
+  if (type === MOVIES_FETCHING) {
     return {
       ...state,
       quote: "",
@@ -16,7 +16,7 @@ const quote = (state = initialState, { type, payload }) => {
     }
   }
 
-  if (type === QUOTE_FETCHED) {
+  if (type === MOVIES_FETCHED) {
     return {
       loading: false,
       error: "",
@@ -24,7 +24,7 @@ const quote = (state = initialState, { type, payload }) => {
     }
   }
 
-  if (type === QUOTE_ERROR) {
+  if (type === MOVIES_ERROR) {
     return {
       ...state,
       loading: false,
@@ -44,6 +44,6 @@ const favourites = (state = [], action) => {
 };
 
 export default combineReducers({
-  quote,
+  movies,
   favourites
 });
