@@ -11,7 +11,7 @@ const movies = (state = initialState, { type, payload }) => {
   if (type === MOVIES_FETCHING) {
     return {
       ...state,
-      quote: "",
+      movies: null,
       loading: true,
     }
   }
@@ -20,7 +20,7 @@ const movies = (state = initialState, { type, payload }) => {
     return {
       loading: false,
       error: "",
-      quote: payload
+      movies: payload
     }
   }
 

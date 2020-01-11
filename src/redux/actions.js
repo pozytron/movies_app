@@ -10,14 +10,14 @@ export const moviesError = (payload) => ({type: MOVIES_ERROR, payload});
 
 export const addFav = (payload) => ({type: ADD_FAV, payload});
 
-export const fetchMovies = () => (dispatch) => {
+export const fetchMovies = (text) => (dispatch) => {
   dispatch(startMoviesFetching());
 
-  return fetch('http://www.omdbapi.com/?apikey=23d54dda&s=matrix').then(
+  return fetch('http://www.omdbapi.com/?apikey=23d54dda&s='+text).then(
     resp => resp.json() // this returns a promise
   ).then(resp => {
-      console.log(resp);
-      dispatch(moviesFetched(resp))
+      console.log(resp.Search);
+      dispatch(moviesFetched(resp.Search))
     
   }).catch(ex => {
     console.error(ex);

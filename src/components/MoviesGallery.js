@@ -1,20 +1,29 @@
 import React from "react";
+import {connect} from "react-redux";
 
-const MovieThumb = ({title})=>{
+const MovieThumb = ({Title})=>{
     return (
             <li>
-                <h3>{title}</h3>
+                <h3>{Title}</h3>
             </li>
     )
 }
 
-const MoviesGallery = ({movies})=>(
-    <section>
+const MoviesGallery = ({movies})=>{
+    if(movies !=null){
+        return (
+            <section>
         <ul>
             {movies.map((movie,i)=><MovieThumb key={i} {...movie} />)}
         </ul>
-    </section>
-)
+    </section>)
+    }else{
+        return <h1>Trwa ładowanie filmów</h1>
+    }
+}
 
+const mapState = ({movies}) =>({
+    movies:movies.movies
+})
 
-export default MoviesGallery;
+export default connect(mapState)(MoviesGallery);
