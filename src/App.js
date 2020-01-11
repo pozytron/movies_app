@@ -8,14 +8,19 @@ import {
 
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import Search from "./components/Search";
+
+import Home from "./components/Home";
+import Favourites from "./components/Favourites";
+import MustWatch from "./components/MustWatch";
+import Movie from "./components/Movie";
 
 const Navigation = ()=>(
   <nav>
                 <ul>
                   <li><Link to="/">Wyszukiwarka</Link></li>
                   <li><Link to="/favourites">Obejrzane</Link></li>
-                  <li><Link to="/todo">Do obejrzenia</Link></li>
+                  <li><Link to="/mustwatch">Do obejrzenia</Link></li>
+                  <li><Link to="/movie/10">Test Movie 10</Link></li>
                 </ul>
               </nav>
 )
@@ -28,7 +33,10 @@ class Main extends Component {
             <div>
               <Navigation />
               <Switch>
-                <Route path='/:price?' component={Search} />
+                <Route exact path='/' component={Home} />
+                <Route exact path='/favourites' component={Favourites} />
+                <Route exact path='/mustwatch' component={MustWatch} />
+                <Route exact path='/movie/:movieId?' component={Movie} />
               </Switch>
             </div>
           </HashRouter>

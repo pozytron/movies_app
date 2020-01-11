@@ -1,16 +1,29 @@
-export const QUOTE_FETCHING = "fetchingQuote";
-export const QUOTE_FETCHED = "quoteFetched";
-export const QUOTE_ERROR = "quoteError";
-export const ADD_FAV = "addFav";
+export const MOVIES_FETCHING = "MOVIES_FETCHING";
+export const MOVIES_FETCHED = "MOVIES_FETCHED";
+export const MOVIES_ERROR = "MOVIES_ERROR";
+export const ADD_FAV = "ADD_FAV";
 
-export const startFetching = () => ({type: QUOTE_FETCHING});
+export const startMoviesFetching = () => ({type: QUOTE_FETCHING});
 
-export const quoteFetched = (payload) => ({type: QUOTE_FETCHED, payload});
-export const quoteError = (payload) => ({type: QUOTE_ERROR, payload});
+export const moviesFetched = (payload) => ({type: QUOTE_FETCHED, payload});
+export const moviesError = (payload) => ({type: QUOTE_ERROR, payload});
 
 export const addFav = (payload) => ({type: ADD_FAV, payload});
-export const fetchQuote = () => (dispatch) => {
+
+export const fetchMovies = () => (dispatch) => {
   dispatch(startFetching());
+
+  fetch('http://www.omdbapi.com/?apikey=23d54dda&t=matrix').then(
+    resp => resp.json() // this returns a promise
+  ).then(resp => {
+    
+      console.log(resp);
+    
+  }).catch(ex => {
+    console.error(ex);
+  })
+    // key: 23d54dda
+    
 
 //   return api.fetchQuote()
 //     .then((quote) => dispatch(quoteFetched(quote)))
